@@ -25,6 +25,7 @@ export class RocketDetailComponent {
   @Input() rockets: Rocket;
   onSabotaged(rocket: Rocket): void {
     console.log(rocket.name + "is being sabotaged!");
+    rocket.isSabotaged = true;
   }
 
   onTaskChange(rocket: Rocket): void {

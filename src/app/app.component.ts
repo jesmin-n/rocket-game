@@ -1,17 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Rocket } from './rocket';
-
-const ROCKETS: Rocket[] = [
-  { name: 'Rocket1', task: 0, isSabotaged: false },
-  { name: 'Rocket2', task: 0, isSabotaged: false },
-  { name: 'Rocket3', task: 0, isSabotaged: false },
-  { name: 'Rocket4', task: 0, isSabotaged: false },
-  { name: 'Rocket5', task: 0, isSabotaged: false },
-  { name: 'Rocket6', task: 0, isSabotaged: false },
-  { name: 'Rocket7', task: 0, isSabotaged: false },
-  { name: 'Rocket8', task: 0, isSabotaged: false },
-  { name: 'Rocket9', task: 0, isSabotaged: false },
-];
+import { RocketService } from './rocket.service';
 
 @Component({
   selector: 'my-app',
@@ -24,13 +13,20 @@ const ROCKETS: Rocket[] = [
         <img src="assets/blue_rocket.svg">
       </div>
     </div>
-
     <rocket-detail [rockets]="rockets"></rocket-detail>
   `,
+  providers: [RocketService]
 })
 
-export class AppComponent  {
+export class AppComponent implements OnInit  {
   title = 'Rocket Racers';
-  rockets = ROCKETS;
+  rockets : Rocket[];
   // selectedRocket: Rocket;
+  constructor(private rocketService: RocketService) {}
+  getRockets(): void {
+    this.rocketService.getRockets().then(rockets => this.rockets = rockets);
+  }
+  ngOnInit(): void {
+    this.getRockets();
+  }
  }

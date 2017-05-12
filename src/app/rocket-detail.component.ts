@@ -15,7 +15,7 @@ import { Rocket } from './rocket';
       </div><!-- /.col-md-3 -->
 
       <div class="col-md-3">
-        <input [(ngModel)]="rocket.task" (click)="onProgressed(rocket)" type="number" id="tasksFinished" min=0 max=9 placeholder=0 class="form-control">
+        <input [(ngModel)]="rocket.task" (click)="onTaskChange(rocket)" type="number" id="tasksFinished" min=0 max=9 placeholder=0 class="form-control">
       </div><!-- /.col-md-3 -->
     </div><!-- /.row -->
   `,
@@ -27,7 +27,7 @@ export class RocketDetailComponent {
     console.log(rocket.name + "is being sabotaged!");
   }
 
-  onProgressed(rocket: Rocket): void {
+  onTaskChange(rocket: Rocket): void {
     console.log(rocket.name + "progressed!");
   }
 }
